@@ -8,5 +8,26 @@
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <h1>Rock Paper Scissors</h1>
+    <h3 class="result"></h3>
+    <div class="display">
+      <h4 class="playerChoice"></h4>
+      <h4 class="botChoice"></h4>
+    </div>
+    <div class="choices">
+      <button class="rock" onclick="rockPaperScissors(), whoWon('Rock')">
+        Rock
+      </button>
+      <button class="paper" onclick="rockPaperScissors(), whoWon('Paper')">
+        Paper
+      </button>
+      <button
+        class="scissors"
+        onclick="rockPaperScissors(), whoWon('Scissors')"
+      >
+        Scissors
+      </button>
+    </div>
+  </body>
 </html>

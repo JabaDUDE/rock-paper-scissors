@@ -1,0 +1,15 @@
+.display {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 25px;
+}
+body {
+  text-align: center;
+}
+.playerChoice {
+  text-align: center;
+}
+.botChoice {
+  text-align: center;
+}
