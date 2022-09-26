@@ -1,42 +1,46 @@
 const botChoice = document.querySelector(".botChoice");
 const playerPick = document.querySelector(".playerChoice");
-const results = document.querySelector(".result");
-// Create a function that returns rock, paper, or scissors as randomly as possible
+const result = document.querySelector(".result");
+
 function rockPaperScissors() {
-  let result = Math.random() * 3;
-  if (result < 1) {
-    return (botChoice.innerHTML = "Rock");
-  } else if (result < 2) {
-    return (botChoice.innerHTML = "Paper");
+  const random = Math.random() * 3;
+  if (random < 1) {
+    return "Rock";
+  } else if (random < 2) {
+    return "Paper";
   } else {
-    return (botChoice.innerHTML = "Scissors");
+    return "Scissors";
   }
 }
 
-// *Conditionals*
-//Create a function that takes in a choice (rock, paper, or scissors) and determines if they won a game of rock paper scissors against a bot using the above function
+function playerVsBot(playerChoice) {
+  botChoice.innerHTML = rockPaperScissors();
+  playerPick.innerHTML = playerChoice;
+}
+//TODO: fix logic of who wins (wrong result will appear on page)
 function whoWon(playerChoice) {
   let botChoice = rockPaperScissors();
-  playerPick.innerHTML = playerChoice;
   if (
     (playerChoice === "Rock" && botChoice === "Paper") ||
-    (playerChoice === "Scissors" && botChoice === "Rock") ||
-    (playerChoice === "Paper" && botChoice === "Scissors")
+    (playerChoice === "Paper" && botChoice === "Scissors") ||
+    (playerChoice === "Scissors" && botChoice === "Rock")
   ) {
-    return (results.innerHTML = "Bot Wins");
-  } else if (playerChoice === botChoice) {
-    return (results.innerHTML = "Draw");
+    result.innerHTML = "Bot Won";
+    result.style.color = "Red";
+  } else if (
+    (playerChoice === "Rock" && botChoice === "Scissors") ||
+    (playerChoice === "Paper" && botChoice === "Rock") ||
+    (playerChoice === "Scissors" && botChoice === "Paper")
+  ) {
+    result.innerHTML = "Player Won";
+    result.style.color = "Green";
   } else {
-    return (results.innerHTML = "Player Wins");
+    result.style.color = "Gray";
+    result.innerHTML = "Draw";
   }
+  return [result.innerHTML, result.style.color];
 }
-// console.log(whoWon("Rock"));
-//*Loops*
-//Create a function that takes an array of choices. Play the game x times where x is the number of choices in the array. Print the results of each game to the console.
-// function arrChoice(arr) {
-//   for (let i = 0; i < arr.length; i++) {
-//     console.log(whoWon(arr[i]));
-//   }
-//   //arr.forEach( choice => console.log(whoWon(choice)) );
-// }
-// arrChoice(["Paper", "Rock", "Scissors"]);
+
+function keepCount() {
+  //checks who the winner is and adds a tally in either the won or lost column
+}
