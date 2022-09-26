@@ -1,6 +1,11 @@
 const botChoice = document.querySelector(".botChoice");
 const playerPick = document.querySelector(".playerChoice");
 const result = document.querySelector(".result");
+const playerWonCount = document.querySelector(".playerCount");
+const botWonCount = document.querySelector(".botCount");
+
+let botCount = 0;
+let playerCount = 0;
 
 function rockPaperScissors() {
   const random = Math.random() * 3;
@@ -13,32 +18,53 @@ function rockPaperScissors() {
   }
 }
 
-function playerVsBot(playerChoice) {
-  botChoice.innerHTML = rockPaperScissors();
-  playerPick.innerHTML = playerChoice;
-}
-//TODO: fix logic of who wins (wrong result will appear on page)
 function whoWon(playerChoice) {
-  let botChoice = rockPaperScissors();
-  if (
-    (playerChoice === "Rock" && botChoice === "Paper") ||
-    (playerChoice === "Paper" && botChoice === "Scissors") ||
-    (playerChoice === "Scissors" && botChoice === "Rock")
-  ) {
-    result.innerHTML = "Bot Won";
-    result.style.color = "Red";
-  } else if (
-    (playerChoice === "Rock" && botChoice === "Scissors") ||
-    (playerChoice === "Paper" && botChoice === "Rock") ||
-    (playerChoice === "Scissors" && botChoice === "Paper")
-  ) {
-    result.innerHTML = "Player Won";
-    result.style.color = "Green";
-  } else {
+  let botPick = rockPaperScissors();
+  botChoice.textContent = botPick;
+  playerPick.textContent = playerChoice;
+
+  if (playerChoice === botPick) {
+    result.textContent = "Tie!";
     result.style.color = "Gray";
-    result.innerHTML = "Draw";
+  } else if (playerChoice === "Rock") {
+    if (botPick === "Paper") {
+      botCount++;
+      result.textContent = "Bot Won!";
+      result.style.color = "Red";
+      botWonCount.innerHTML = botCount;
+    } else {
+      playerCount++;
+      result.textContent = "Player Won!";
+      result.style.color = "Green";
+      playerWonCount.innerHTML = playerCount;
+    }
+  } else if (playerChoice === "Scissors") {
+    if (botPick === "Rock") {
+      botCount++;
+      botWonCount.innerHTML = botCount;
+      result.textContent = "Bot Won!";
+      result.style.color = "Red";
+    } else {
+      playerCount++;
+      playerWonCount.innerHTML = playerCount;
+      result.textContent = "Player Won!";
+      result.style.color = "Green";
+    }
+  } else if (playerChoice === "Paper") {
+    if (botPick === "Scissors") {
+      botCount++;
+      playerWonCount.innerHTML = playerCount;
+      botWonCount.innerHTML = botCount;
+      result.textContent = "Bot Won!";
+      result.style.color = "Red";
+    } else {
+      playerCount++;
+      playerWonCount.innerHTML = playerCount;
+      result.textContent = "Player Won!";
+      result.style.color = "Green";
+    }
   }
-  return [result.innerHTML, result.style.color];
+  console.log(botCount, playerCount);
 }
 
 function keepCount() {
