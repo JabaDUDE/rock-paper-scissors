@@ -30,7 +30,7 @@
 .vertical {
   position: absolute;
   left: 50%;
-  border-left: 1px solid #ccc;
+  border-left: 6px solid #39ff14;
   margin: 0 10px;
   height: 125px;
 }
